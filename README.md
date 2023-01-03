@@ -16,9 +16,13 @@ o- user list :
 
 -o
 
-o- PHP version : 8.0.2
-o- Database version : libmysql - mysqlnd 8.1.2
-o- framework : laravel
+o- versions :
+
+    - PHP version : 8.0.2
+    - Database version : libmysql - mysqlnd 8.1.2
+    - framework : laravel
+
+-o
 
 !! PETUNJUK PENGGUNAAN : !!
 
@@ -28,8 +32,8 @@ o- framework : laravel
 4. jalankan 'php artisan migrate' lalu 'php artisan db:seed' pada terminal
 5. jalankan 'npm run dev' lalu 'php artisan serve' pada terminal
 
-o- untuk menambahkan user baru, tambahkan /register pada url website
-o- Untuk menambahkan pengajuan peminjaman, klik tombol new request pada dashboard
-o- Untuk menambahkan kendaraan, navigasi ke halaman Vehicles pada dashboard
+Untuk menambahkan user baru, tambahkan /register pada url website.
+Untuk menambahkan pengajuan peminjaman, klik tombol new request pada dashboard.
+Untuk menambahkan kendaraan, navigasi ke halaman Vehicles pada dashboard.
 
 
