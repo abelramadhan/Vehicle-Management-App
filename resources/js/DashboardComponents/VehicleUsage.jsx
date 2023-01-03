@@ -4,8 +4,10 @@ export default function VehicleUsage(props) {
     const requests = props.requests
     const requestLogs = props.requestLogs
 
+    let filteredLog = requestLogs.filter(req=>req.date_returned==null)
+    filteredLog = filteredLog.map(req=>req.vehicle_id)
     const requestVehicleId = requests.map(req => req.vehicle_id);
-    const usedVehicleId = [...requestVehicleId]
+    const usedVehicleId = [...requestVehicleId,...filteredLog]
     const unavailableVehicles = vehicles.filter((vehicle) => usedVehicleId.includes(vehicle.id))
     const carCount = {
         used: unavailableVehicles.length,

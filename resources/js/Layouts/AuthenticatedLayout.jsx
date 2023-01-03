@@ -66,7 +66,7 @@ export default function Authenticated({ auth, header, children }) {
                                     <h2>Vehicles</h2>
                                 </div>
                             </NavLink>
-                            <NavLink href={route('dashboard')}>
+                            <NavLink href={route('request')}>
                                 <div className="flex flex-row gap-x-3 items-center">
                                     <i className="fa-solid fa-clipboard w-6 text-center"></i>
                                     <h2>Requests</h2>

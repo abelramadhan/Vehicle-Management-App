@@ -27,9 +27,10 @@ Route::get('/RequestForm', [RequestController::class, 'create'])->middleware(['a
 
 Route::post('/vehicles/add', [VehicleController::class, 'store'])->middleware(['auth', 'verified'])->name('vehicles_add');
 
-
+Route::get('/request', [RequestController::class, 'index'])->middleware(['auth', 'verified'])->name('request');
 Route::post('/request/add', [RequestController::class, 'store'])->middleware(['auth', 'verified'])->name('request_add');
 Route::post('/request/approve', [RequestController::class, 'approve'])->middleware(['auth', 'verified'])->name('approve_request');
+Route::post('/request/finish', [RequestController::class, 'finish'])->middleware(['auth', 'verified'])->name('finish_request');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

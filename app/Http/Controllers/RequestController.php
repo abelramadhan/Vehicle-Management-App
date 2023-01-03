@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\DB;
 class RequestController extends Controller
 {
     //
+
+    public function index() {
+        $requests = DB::table('requests')->get()->toJson();
+        $vehicles = DB::table('vehicles')->get()->toJson();
+        $request_logs = DB::table('request_logs')->get()->toJson();
+
+        return Inertia::render('Requests', [
+            'requests' => $requests,
+            'vehicles' => $vehicles,
+            'request_logs' => $request_logs, ]);
+    }
+
     public function create()
     {
         $vehiclesInUse = DB::table('requests')->pluck('vehicle_id')->all();
@@ -65,6 +77,7 @@ class RequestController extends Controller
         } else {
             $request_object->approval_2 = true;
         }
+        $request_object->save();
 
 
         if ($request_object->approval_1 && $request_object->approval_2) {
@@ -78,12 +91,28 @@ class RequestController extends Controller
                 'km_before' => $vehicle->km_driven,
                 'date_given' => now()   
             ]);
-
             $request_log->save();
-        } else {
-            $request_object->save();
-        }
-
+            $request_object->delete();
+        } 
         return redirect(route('dashboard'));
+    }
+
+    public function finish(Request $request) {
+
+        $request->validate([
+           'km_after'=>'required' 
+        ]);
+
+        $request_id = $request->id;
+        $request_object = RequestLog::find($request_id);
+        $request_object->km_after = $request->km_after;
+        $request_object->date_returned = now();
+
+        $vehicle = Vehicle::find($request_object->vehicle_id);
+        $vehicle->km_driven = $request->km_after;
+        
+        $request_object->save();
+        $vehicle->save();
+        return redirect(route('request'));
     }
 }
