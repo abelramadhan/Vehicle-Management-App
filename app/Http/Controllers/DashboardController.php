@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RequestLogExport;
 
 class DashboardController extends Controller
 {
@@ -24,5 +26,9 @@ class DashboardController extends Controller
         'requests' => $requests,
         'vehicles' => $vehicles,
         'request_logs' => $request_logs, ]);
+    }
+
+    public function export() {
+        return Excel::download(new RequestLogExport, 'VehicleRequestLog.xlsx');
     }
 }

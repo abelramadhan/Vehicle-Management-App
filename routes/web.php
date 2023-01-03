@@ -20,6 +20,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/download', [DashboardController::class, 'export'])->middleware(['auth', 'verified'])->name('download');
 
 Route::get('/vehicles', [VehicleController::class, 'index'])->middleware(['auth', 'verified'])->name('vehicles');
 Route::get('/RequestForm', [RequestController::class, 'create'])->middleware(['auth', 'verified'])->name('request_form');

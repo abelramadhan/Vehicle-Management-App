@@ -33,8 +33,17 @@ export default function Dashboard(props) {
                     <VehicleUsage requests={requests} vehicles={vehicles} requestLogs={requestLogs} />
                 </div>
 
-                <div className="flex flex-col gap-y-4 h-full col-start-1 col-span-2 row-start-2">
+                
+
+                <div className="flex flex-col gap-y-4 h-full col-start-1 col-span-2 row-start-2 row-span-2 ">
                     <UsageGraph requests={requests} vehicles={vehicles} requestLogs={requestLogs} />
+                </div>
+
+                <div className="place-self-strech p-8 bg-slate-50 rounded-md shadow-sm">
+                    <a href='/download' className='flex flex-row text-3xl items-center justify-center gap-x-5 font-medium text-white bg-green-400 px-6 py-5 rounded-md shadow-sm h-full hover:bg-green-500 transition-colors'>
+                        <i class="fa-solid fa-file-excel text-5xl"></i>
+                        <h2>Export as<br/> Excel Spreadsheet</h2>
+                    </a>
                 </div>
             </div>
         </AuthenticatedLayout>
